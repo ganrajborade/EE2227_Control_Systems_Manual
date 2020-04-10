@@ -1,0 +1,110 @@
+\begin{enumerate}[label=\thesection.\arabic*.,ref=\thesection.\theenumi]
+\numberwithin{equation}{enumi} 
+\item 
+An input p(t) = sin(t) is applied to the system 
+\begin{align}
+G(s) = \frac{s-1}{s+1} 
+\end{align}
+The corresponding steady state output is \begin{align}
+y(t) = sin(t + \varphi)
+\end{align}
+
+where the phase $\varphi$ (in degrees), when restricted to 
+\begin{align}
+0^{\circ} \leq \varphi \leq 360^{\circ},
+\end{align}
+is ? \\
+
+
+
+\solution
+We have p(t) = sin(t)
+ \\
+ 
+We know that Laplace Transform of p(t) = $\mathcal{L}$(p(t)) = P(s) . So , 
+\begin{align}
+P(s) = \frac{1}{s^2 + 1}
+\end{align}
+
+And we are given the steady state output
+\begin{align}
+y_s(t) = sin(t+\varphi)
+\end{align}
+So,
+\begin{align}
+y_s(t) = sin(t)cos(\varphi) + cos(t)sin(\varphi)
+\end{align}
+Hence , Laplace transform of y(t) in steady state is :
+\begin{align}
+\mathcal{L}(y_s(t))  =Y_s(s) = \mathcal{L}(sin(t))cos(\varphi) + \mathcal{L}(cos(t))sin(\varphi)
+\end{align}
+
+Since ,
+\begin{align}
+ \mathcal{L}(sin(t)) = \frac{1}{s^2 + 1} ; \mathcal{L}(cos(t)) = \frac{s}{s^2 + 1}
+\end{align}
+So,
+\begin{align}
+Y_s(s) = \frac{cos\varphi + s(sin\varphi)}{s^2 + 1} 
+\end{align}
+Hence , the output of the system in s-domain is Y(s) = P(s)G(s) . So,
+\begin{align}
+Y(s) = \frac{1}{s^2 + 1} . \frac{s-1}{s+1}
+\end{align}
+For solving this we can use the partial fractions:
+\begin{align}
+Y(s) = \frac{As + B}{s^2 + 1}+\frac{C}{s + 1}.i.e,
+\end{align}
+\begin{align}
+Y(s)=\frac{(A+C)s^2+(A+B)s+(B+C)}{(s^2 + 1)(s + 1)}  
+\end{align}
+Hence by comparing the coefficients,we get A+C=0 , A+B=0 , B+C=-1.So,
+
+After solving these above equations,we get A=1 , B=0 , C=-1.   
+\begin{align}
+Y(s) =  \frac{s}{s^2 + 1} - \frac{1}{s + 1}
+\end{align}
+Now , we know that Laplace transform of $e^{-t}$u(t) is 
+\begin{align}
+\mathcal{L}(e^{-t}u(t)) = \frac{1}{s+1}
+\end{align}
+i.e,
+\begin{align}
+\mathcal{L}^{-1}(\frac{1}{s+1}) = e^{-1}u(t)
+\end{align}
+\\
+\section{Steady State Analysis}
+As for steady state analysis , we put t $\rightarrow\infty$ ,therefore $e^{-1}u(t)$ will disappear while taking inverse laplace transform . Hence in steady state , only $\frac{s}{s^2 + 1}$ term will appear in laplace transform of y(t) as t $\rightarrow\infty$.
+
+
+Hence , in steady state,
+\begin{align}
+Y(s) = \frac{s}{s^2 + 1} = Y_s(s) .
+\end{align}
+So ,	
+\begin{align}
+\frac{s}{s^2 + 1} = \frac{cos(\varphi) + s(sin(\varphi))}{s^2 + 1}
+\end{align}
+By comparing coefficients of s and constants , we get $cos(\varphi)$ = 0 and $sin(\varphi)$ = 1 .
+\\
+So, because 0$^{\circ}\leq\varphi\leq360^{\circ}$ , therefore $\varphi = 90^{\circ}$
+\\
+
+Plot obtained for verification in python :
+
+(You can download code from codes/ee18btech11016.py)
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=\columnwidth,scale=1.5]{./figs/fig.eps}
+	\caption{}
+	\label{fig:Phase}
+\end{figure}
+
+In above plot , black color plot is of cos(t).And blue color plot is the plot of resultant y(t) .So , we can see from above plots that black and blue color plots are coinciding after t=3 . Hence y(t) = sin(t + 90$^{\circ}$) in steady state.
+
+
+
+
+\end{enumerate}
+
+
