@@ -5,35 +5,41 @@ April 12,2020
 Released under GNU GPL
 '''
 
-import numpy as np 
-import matplotlib.pyplot as plt 
+#Bode phase plot using scipy in python
+from scipy import signal
+import matplotlib.pyplot as plt
 from pylab import *
+#Defining the transfer function 
+#Since the transfer function is 1/(s(1+2s)(s+1)) = 1/(2s^3 + 3s^2 + s)
+s1 = signal.lti([1],[2, 3,1,0])
 
-t1 = np.linspace(0,3,100)
-t2 = np.linspace(0,20,1000)
+#signal.bode takes transfer function as input and returns frequency,magnitude and phase arrays
+w,mag,phase = signal.bode(s1)
 
-x1 = np.sin(t1) #input to the system for range of time t1.
-x2 = np.sin(t2) #input to the system for range of time t2.
-y_o = np.cos(t2) - np.exp(-t2) #steady state output of the system
-y_o1 = np.cos(t1) - np.exp(-t1) #for plotting wrt t1 .thats it.
 
-y1 = np.cos(t2)
-y2 = -np.exp(-t2)
 subplot(2,1,1)
-plt.plot(t1,x1,'g',label = 'Input x(t) = sin(t)')
-plt.plot(t1,y_o1,'b',label = 'Resultant output y(t)')
-plt.grid()
-plt.legend()
-plt.xlabel('t')
-plt.ylabel('The input & output of the system in t-domain')
+#plt.xlabel('Frequency(rad/s)')
+plt.ylabel('Mag(deg)')
+plt.title('Magnitude plot')
+plt.plot(0.7,-3.5,'o')
+plt.text(0.7,-3.5, '({}, {})'.format(0.7,-3.5))
+plt.axvline(x = 0.7,ymax = 0.59,color='k',linestyle='dashed')
+plt.semilogx(w, mag,'b')        # Bode Magnitude plot
+plt.grid() 
 
 subplot(2,1,2)
-plt.plot(t2,x2,'g',label = 'Input x(t) = sin(t)') #plotting input for more time i.e with respect to t2.
-plt.plot(t2,y_o,'b',label = 'Resultant output y(t)')
-plt.plot(t2,y1,'k',linestyle='dashed',label= 'steady state output :cos(t)')
-plt.plot(t2,y2,'r',linestyle='dashed',label = '-e$^{-t}$')
-plt.grid()
-plt.legend()
-plt.xlabel('t')
-plt.ylabel('The output of the system in t-domain')
+plt.xlabel('Frequency(rad/s)')
+plt.ylabel('Phase(deg)')
+
+plt.axhline(y = -180,xmin=0,xmax= 0.605,color = 'r',linestyle='dashed')
+plt.axvline(x = 0.7,ymin=0.479,color='k',linestyle='dashed')
+plt.plot(0.7,-180,'o')
+plt.text(0.7,-180, '({}, {})'.format(0.7,-180))
+plt.title('Phase plot')
+plt.semilogx(w,phase)          # Bode phase plot
+plt.grid() 
+
+
+
+
 plt.show()
