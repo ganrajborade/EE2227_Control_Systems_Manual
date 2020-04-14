@@ -1,0 +1,152 @@
+\begin{enumerate}[label=\thesubsection.\arabic*.,ref=\thesubsection.\theenumi]
+\numberwithin{equation}{enumi}
+
+\item
+Consider a unity feedback system as shown in Fig.  \ref{fig:ee18btech11005}, with an integral compensator $\frac{k}{s}$ and open-loop transfer function
+\begin{align}
+G(s) = \frac{1}{s^2+3s+2}
+\end{align}
+where k greater than 0. 
+%
+Find its closed loop transfer function.
+\begin{figure}[!ht]
+	\begin{center}
+		
+		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11005.tex}}
+	\end{center}
+\caption{}
+\label{fig:ee18btech11005}
+\end{figure}
+
+\solution $\because H(s) = 1$ in Fig.  \ref{fig:ee18btech11005}, due to unity feedback,   the transfer function is given by
+\begin{align}
+\frac{Y(s)}{X(s)} &= \frac{G(s)}{1+G(s)H(s)}
+\\
+\implies T(s) &= \frac{k}{s^3+3s^2+2s}
+\end{align}
+%
+\item Find the {\em characteristic} equation for $G(s)$.
+\\
+\solution The characteristic equation is
+\begin{align}
+\label{eq:routh_char_eq}
+ 1 + G(s)H(s) &= 0 
+\\
+\implies 1 + \sbrak{\frac{k}{s^3+3s^2+2s}} &= 0
+\\
+\text{or, } s^3+3s^2+2s+k &= 0
+\end{align}
+\item Using the tabular method for the Routh hurwitz criterion, find $k > 0$ for which there are two poles of unity feedback system on j${\omega}$ axis.
+%
+\\
+\solution 
+This criterion is based on arranging the coefficients of characteristic equation into an array called Routh array.
+For any characteristic equation 
+\begin{multline}
+q(s) = a_0s^n+a_1s^{n-1}+.....+a_{n-1}s+a_n = 0
+\end{multline}
+the Routh array can be constructed as 
+ 
+\begin{align}
+\mydet{s^n\\s^{n-1}\\s^{n-2} \\ \vdots}
+ \mydet{a_0 & a_2 & a_4 & \cdots \\
+a_1 & a_3 & a_5 & \cdots  \\
+b_1 & b_2 & b_3 & \cdots \\
+\vdots & \vdots & \vdots & \ddots &\vdots 
+ \cdots \\}
+\end{align}
+%
+ where
+ \begin{align}
+ b_1 =\frac{ a_1a_2-a_0a_3}{a_1}  
+ \\
+ b_2 =\frac{ a_1a_4-a_0a_5}{a_1} 
+ \\
+ c_1=\frac{ b_1a_3-a_1b_2}{b_1} 
+\\
+ c_2=\frac{ b_1a_5-a_1b_3}{b_1}  
+\end{align}
+For poles to lie on imaginary axis any one entire row of hurwitz matrix should be zero.
+Constructing the routh array for the characteristic equation obtained in \ref{eq:routh_char_eq},
+%
+\begin{align}
+ s^3+3s^2+2s+k = 0
+\end{align}
+%
+\begin{align}
+\mydet{s^3\\s^2\\s^1 \\ s^0}
+\mydet{1 & 2 \\ 3 & k \\  \frac{6-k}{3} & 0\\ k & 0}
+\end{align}
+For poles on $\j \omega$ axis any one of the row should be zero.
+%
+\begin{align}
+\therefore \frac{6-k}{3} &= 0 \text{ or } k = 0
+\\
+\implies k &= 6 \quad \because k > 0
+\end{align}
+\item Repeat the above using the determinant method.
+\\
+\solution The {\em Routh matrix} can be expressed as
+\begin{align}
+\vec{R} = \myvec{a_0 & a_2 & a_4 & \cdots \\
+a_1 & a_3 & a_5 & \cdots  \\
+ 0 & a_0 & a_2\cdots \\
+ 0 & a_1 & a_3 \cdots\\
+\vdots & \vdots & \vdots & \ddots &\vdots 
+\cdots \\}
+\end{align}
+and the corresponding Routh determinants are
+\begin{align}
+D_1 &= |a_0|
+\\
+D_2 &= 
+\mydet{
+a_0 & a_2 
+\\ 
+a_1 & a_3
+} 
+\\
+D_3 &=\mydet{
+a_0 & a_2 & a_4 
+\\ a_1 & a_3 & a_5 
+\\ 0 & a_0 & a_2}
+\\
+\dots
+\end{align}
+If at least any one of the Determinents are zero then the poles lie on imaginary axes.  From \eqref{eq:routh_char_eq},
+%
+\begin{align}
+D_1 &= 1 \ne 0
+\\
+D2 &= \mydet{
+1 & 2 \\ 3 & k } 
+&= k-6 =0 \implies k = 6
+\end{align}
+%
+\item Verify your answer using a python code for both the determinant method as well as the tabular method.
+\label{prob:ee18btech11005_python}
+\\
+\solution 
+The following code verifies the stability using the tabular method 
+%
+\begin{lstlisting}
+codes/ee18btech11005_2.py
+\end{lstlisting}
+and the following one verifies using the determinant method.
+\begin{lstlisting}
+codes/ee18btech11005.py
+\end{lstlisting}
+%
+provides the necessary soution.
+\begin{itemize}
+\item  For the system to be stable all coefficients should lie on left half of s-plane. Because if any pole is in right half of s-plane then there will be a component in output that increases without bound,causing system to be unstable.
+All the coefficients in the characteristic equation should be positive.This is necessary condition but not sufficient.Because it may have poles on right half of s plane.
+Poles are the roots of the characteristic equation.
+    \item A system is stable if all of its characteristic modes go to finite value as t goes to infinity.It is possible only if all the poles are on the left half of s plane.
+    The characteristic equation should have negative roots only. So the first column should always be greater than zero.That means no sign changes.
+    \item A system is unstable if its characteristic modes are not bounded. Then the characteristic equation will also have roots in the right side of s-plane.That means it has sign changes.
+    \end{itemize}
+
+\end{enumerate}
+
+

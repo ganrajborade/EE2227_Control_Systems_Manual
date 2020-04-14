@@ -1,0 +1,86 @@
+\begin{enumerate}[label=\thesection.\arabic*.,ref=\thesection.\theenumi]
+\numberwithin{equation}{enumi}
+\item The open loop transfer function of a unity feedback system is given by
+\begin{align}
+\label{eq:ee18btech11007_system}
+ G(s)=\frac{\pi e^{-0.25s}}{s}
+\end{align}
+\item Find $\text{Re} \cbrak{G(\j \omega)}$ and $\text{Im} \cbrak{G(\j \omega)}$.
+\\
+\solution From \eqref{eq:ee18btech11007_system},
+%
+\begin{align}
+G(j\omega)&=\frac{\pi}{\omega}(-\sin{0.25\omega}-j\cos{0.25\omega})
+\\
+\implies  \text{Re} \cbrak{G(\j \omega)}&=\frac{\pi}{\omega}(-\sin{0.25\omega}) 
+\\
+ \text{Im} \cbrak{G(\j \omega)}&=\frac{\pi}{\omega}(-j\cos{0.25\omega}) 
+\end{align}
+%
+\item Sketch the Nyquist plot.
+\\
+\solution The Nyquist plot is a graph of $\text{Re} \cbrak{G(\j \omega)}$  vs $\text{Im} \cbrak{G(\j \omega)}$.
+The following python code generates the Nyquist plot in Fig.  \ref{fig:ee18btech11007}
+%
+\begin{figure}[!h]
+  \includegraphics[width=\columnwidth]{./figs/ee18btech11007.eps}
+  \caption{}
+  \label{fig:ee18btech11007}
+\end{figure}
+%
+\item Find the point at which the Nyquist plot of G(s) passes through the negative real axis
+\\
+\solution  Nyquist plot cuts the negative real axis at $\omega $ for which 
+\begin{align}
+\angle G(\j\omega)=-\pi
+\label{eq:ee18btech11007_system_neg_real}
+\end{align}
+From \eqref{eq:ee18btech11007_system},
+\begin{align}
+ G(\j\omega)&=\frac{\pi e^{-\frac{\j\omega}{4}}}{\j\omega} = \frac{\pi e^{-\j\brak{\frac{\omega}{4}+\frac{\pi}{2}}}}{\omega}
+\\
+\implies \angle{ G(\j\omega)} &= -\brak{\frac{\omega}{4}+\frac{\pi}{2}}
+\label{eq:ee18btech11007_system_ang}
+\end{align}
+From \eqref{eq:ee18btech11007_system_ang} and \eqref{eq:ee18btech11007_system_neg_real}, 
+\begin{align}
+\frac{\omega}{4}+\frac{\pi}{2} &= \pi
+\\
+\implies \omega = 2\pi
+\end{align}
+Also, from \eqref{eq:ee18btech11007_system},
+\begin{align}
+\label{eq:ee18btech11007_system_mod}
+\abs{ G(\j\omega)}&=\frac{\pi }{\abs{\omega}}
+\\
+\implies \abs{ G(\j2\pi)} &= \frac{1}{2}
+\end{align}
+%
+%\item Find the value of $P$ defined in Table \ref{table:ee18btech11007} from Fig.  \ref{fig:ee18btech11007}.
+
+%
+%\solution $P = 0$.
+%\item Find the value of $N$ defined in Table \ref{table:ee18btech11007} from  \eqref{eq:ee18btech11007_system}
+%\\
+%\solution $\because H(s) = 1$, $G(s)H(s) = G(s)$. Also, $G(s)$ has a pole at $s = 0$, hence $N = 0$.
+\item Use the Nyquist Stability criterion to determine if the system in \eqref{eq:ee18btech11007_system_ang} is stable.
+\begin{table}[!ht]
+\centering
+\input{./tables/ee18btech11007.tex}
+\caption{}
+\label{table:ee18btech11007}
+\end{table}
+\\
+\solution Consider Table \ref{table:ee18btech11007}.  According to the Nyquist stability criterion, 
+\begin{enumerate}
+\item If the open-loop transfer function $G(s)$ has a zero pole of multiplicity $l$, then the Nyquist plot has a discontinuity at $\omega$ =0. During further analysis it should be assumed that the phasor travels l times clock-wise along a semicircle of infinite radius. After applying this rule, the zero poles should be neglected, i.e. if there are no other unstable poles, then the open-loop transfer function $G(s)$ should be considered stable.
+\item If the open-loop transfer function $G(s)$ is stable, then the closed-loop system is unstable for any encirclement of the point -1.
+If the open-loop transfer function $G(s)$ is unstable, then there must be one counter clock-wise encirclement of -1 for each pole of $G(s)$ in the right-half of the complex plane.
+\label{them:ee18btech11007_nyquist3}
+\item The number of surplus encirclements (N + P greater than 0) is exactly the number of unstable poles of the closed-loop system.
+\item However, if the graph happens to pass through the point $-1+\j0$, then deciding upon even the marginal stability of the system becomes difficult and the only conclusion that can be drawn from the graph is that there exist zeros on the $\j \omega$  axis.
+\end{enumerate}
+From \eqref{eq:ee18btech11007_system}, $G(s)$ is stable since it has a single pole at $s = 0$.  Further,  from Fig.  \ref{fig:ee18btech11007}, the Nyquist plot doesnot encircle $s =  -1$.  From  Theorem \ref{them:ee18btech11007_nyquist3}, we may conclude that the system is stable.
+
+
+\end{enumerate}

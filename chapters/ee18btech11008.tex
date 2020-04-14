@@ -1,0 +1,48 @@
+\begin{enumerate}[label=\thesubsection.\arabic*.,ref=\thesubsection.\theenumi]
+\numberwithin{equation}{enumi}
+\item 
+The characteristic equation of linear time invariant system is given by
+\begin{align} 
+\nabla(s)=s^4+3s^3+3s^2+s+k=0
+\end{align}
+Find the condition for the system to be BIBO stable using the Routh Array.
+
+\textbf{solution}
+\begin{align}
+\nabla(s)=s^4+3s^3+3s^2+s+k=0
+\end{align}
+
+The Routh hurwitz criterion:-
+\bigskip
+\begin{align}
+\mydet{s^4\\s^3\\s^2\\s^1 \\ s^0}
+\mydet{1 & 3 & k \\ 3 & 1 & 0\\  \frac{8}{3}& k & 0\\ \frac{\frac{8}{3}-3k}{\frac{8}{3}} & 0 & 0\\k & 0 & 0} 
+\end{align}
+From the above array, the given system is stable if
+\begin{align}
+\begin{split}
+k&>0 
+\\
+  \frac{\frac{8}{3}-3k}{\frac{8}{3}}&>0    
+\end{split}
+\\
+\implies 0<k<\frac{8}{9}
+\end{align}
+%
+\item Modify the Python code in Problem \ref{prob:ee18btech11005_python} to verify your solution by choosing two different values of $k$.
+\label{prob:ee18btech11008_python}
+\\
+\solution 
+The following code 
+%
+\begin{lstlisting}
+codes/ee18btech11008.py
+\end{lstlisting}
+%
+provides the necessary soution for $k = 0.5, 3$.
+\begin{itemize}
+  \item $k=0.5 < \frac{8}{9}$ has no sign changes in first column of its routh array.So the system is stable.
+  \item $k=3 > \frac{8}{9}$ has 2 sign changes in first column of its routh array.So the system is unstable.
+  \end{itemize}
+
+\end{enumerate}

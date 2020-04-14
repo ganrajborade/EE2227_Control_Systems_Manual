@@ -1,0 +1,159 @@
+\begin{enumerate}[label=\thesection.\arabic*.,ref=\thesection.\theenumi]
+\numberwithin{equation}{enumi}
+
+\item For an LTI system, the Bode plot for its gain defined as
+\begin{align}
+	G(s) = 20\log\abs{H(s)}
+	\label{eq:ee18btech11001_gain}
+\end{align}
+is as illustrated in the Fig. \ref{fig:ee18btech11001_bode}. Express $G(f)$ in terms of $f$.\\
+\begin{figure}[ht!]
+    \includegraphics[width=\columnwidth]{./figs/ee18btech11001/ee18btech11001.eps}
+    \caption{}
+    \label{fig:ee18btech11001_bode}
+\end{figure}\\
+
+\solution
+\begin{align}
+ G(f) = 
+ \begin{cases} 
+        100 & 0 < f < 10^{1} \\
+      120-20\log(f) & 10 < f < 10^{2} \\
+      200-60\log(f) & 10^2 < f < 10^{3} \\
+      140-40\log(f) & 10^{3} < f < 10^{4} \\
+       -20 & 10^{4} < f < 10^{5} \\
+      180-40\log(f) & 10^{5} < f < 10^{6} \\
+      300-60\log(f) & 10^{6} < f < 10^{7}   
+ \end{cases}
+\end{align}
+
+%-----------------------------------------------------------------------%
+
+\item Express the slope of $G(f)$ in terms of $f$.
+\\
+\solution The desired slope is 
+\begin{align}
+\nabla G(f) &= \dfrac{d(G(f))}{d(\log(f))}
+\end{align}
+
+\begin{align}
+ \nabla G(f) = 
+ \begin{cases} 
+        0 & 0 < f < 10^{1} \\
+      -20 & 10 < f < 10^{2} \\
+      -60 & 10^{2} < f < 10^{3} \\
+      -40 & 10^{3} < f < 10^{4} \\
+       0 & 10^{4} < f < 10^{5} \\
+      -40 & 10^{5} < f < 10^{6} \\
+      -60 & 10^{6} < f < 10^{7}   
+ \end{cases}
+\end{align}
+
+%-----------------------------------------------------------------------%
+
+\item Express the change of slope of $G(f)$ in terms of $f$.
+\\
+\solution\\
+$\Delta(\nabla G(f))$  = Change of slope G(f) at f
+
+\begin{align}
+ \Delta(\nabla G(f)) = 
+ \begin{cases} 
+      -20 &  f = 10^{1} \\
+      -40 &  f = 10^{2} \\
+      +20 &  f = 10^{3} \\
+      +40 &  f = 10^{4} \\
+      -40 &  f = 10^{5} \\
+      -20 &  f = 10^{6} 
+ \end{cases}
+\label{eq:ee18btech11001_slope_diff}
+\end{align}
+
+%-----------------------------------------------------------------------%
+
+\item Tabulate the poles and zeros of $H(s)$ using \eqref{eq:ee18btech11001_slope_diff}.
+\\
+\solution Table \ref{table:ee18btech11001} provides the details.  
+%
+\begin{table}[!ht]
+\centering
+\input{./tables/ee18btech11001.tex}
+\caption{}
+\label{table:ee18btech11001}
+\end{table}
+
+
+%-----------------------------------------------------------------------%
+
+\item Obtain the transfer function of $H(s)$.
+\\
+\solution From Table \ref{table:ee18btech11001},
+{\footnotesize
+\begin{align}
+\label{eq:ee18btech11001_system}
+	H(s) = \frac{K(s+j2\pi 10^{3})(s+j2\pi 10^{4})^{2}}{(s+j2\pi 10^{1})(s+j2\pi 10^{2})^{2}(s+j2\pi 10^{5})^{2}(s+j2\pi 10^{6})}
+\end{align}
+}
+\item Justify the above results.
+\\
+\solution
+Let us consider a generalized transfer gain
+\begin{align}
+	H(s) = k \dfrac{(s-z_{1})(s-z_{2})...(s-z_{m-1})(s-z_{m})}{(s-p_{1})(s-p_{2})....(s-p_{n-1})(s-p_{n})}
+\end{align}
+The gain
+\begin{multline}
+	G(f) = 20\log\abs{H(s)} 
+\\
+= 20\log \abs{k} + 20\log \abs{s-z_{1}} 
+	    \\
+	    + 20\log \abs{s-z_{2}} + \dots + 20\log \abs{s-z_{m}} 
+\\
+- 20\log \abs{s-p_{1}} 
+	    - 20\log \abs{s-p_{2}} 
+	    \\
+- \dots - 20\log \abs{s-z_{n}} 
+\end{multline}
+%
+Substituting $s = \j \omega$, for real $z_1$
+\begin{align}
+	20\log \abs{s-z_{1}} &= 20\log \abs{\sqrt{\omega^{2} + z_{1}^{2}}}
+\\
+&= 
+\begin{cases}
+20 \log \abs{z_{1}}, & \omega \ll z_{1}
+\\
+20 \log \abs{\omega}, & \omega \gg z_{1}
+\end{cases}
+\end{align}
+%
+Taking the derivative, 
+\begin{align}
+	\frac{d\brak{20\log \abs{s-z_{1}}}}{d\brak{\log \abs{\omega}}} 
+= 
+\begin{cases}
+0, & \omega \ll z_{1}
+\\
+20, & \omega \gg z_{1}
+\end{cases}
+\end{align}
+%
+Thus, when a zero is encountered, the gradient of $H(\j\omega)$ jumps by +20 in the log scale.  When a pole is encountered, the gradient falls by -20. Note that this is a very loose justification, but works well in practice.
+
+%-----------------------------------------------------------------------%
+
+\item Obtain the Bode plot and the slope plot for $H(s)$ and verify with  Fig. \ref{fig:ee18btech11001_bode}
+\\
+\solution Bode Plot of obtained Transfer Function is 
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\columnwidth]{./figs/ee18btech11001/ee18btech11001_2.eps}
+    \caption{}
+    \label{fig:ee18btech11001_2}
+\end{figure}
+%
+Fig. \ref{fig:ee18btech11001}, obtained from  \eqref{eq:ee18btech11001_system},
+is a close reconstruction of Fig. \ref{fig:ee18btech11001}.
+\end{enumerate}
+
+

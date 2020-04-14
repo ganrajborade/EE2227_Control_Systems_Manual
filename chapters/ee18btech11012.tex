@@ -1,0 +1,43 @@
+\begin{enumerate}[label=\thesubsection.\arabic*.,ref=\thesubsection.\theenumi]
+\numberwithin{equation}{enumi}
+\item List the different kinds of damping for a second order system defined by 
+\begin{align}
+\label{eq:ee18btech11012_second}
+H(s)=\frac{\omega^2}{s^2+2\zeta\omega+\omega^2}
+\end{align}
+where $\omega$ is  the natural   frequency  and $ \zeta $  is the  damping factor.
+%
+\\
+\solution The details are available in Table \ref{table:ee18btech11012}
+\begin{table}[!ht]
+\centering
+\input{./tables/ee18btech11012.tex}
+\caption{}
+\label{table:ee18btech11012}
+\end{table}
+
+\item Classify the following second-order systems according to damping.
+\label{prob:ee18btech11012_damp}
+\begin{enumerate}
+\item $H(s) = \frac{15}{{s^2+5s+15}}$ 
+\item $H(s) = \frac{25}{{s^2+10s+25}}$
+\item $H(s) =\frac{35}{{s^2+18s+35}}$ 
+\end{enumerate}
+\solution For 
+\begin{align}
+H(s) &= \frac{25}{{s^2+10s+25}},
+\\
+     \omega^2 &= 25,   2\zeta\omega =10\\
+\implies  \omega &=1,  {\zeta} = 1
+\end{align}
+and the system is critically damped.  Similarly, the damping factors for other systems in Problem \ref{prob:ee18btech11012_damp} are calculated and listed in Table \ref{table:ee18btech11012_damp}
+%
+\begin{table}[!ht]
+\centering
+\input{./tables/ee18btech11012_damp.tex}
+\caption{}
+\label{table:ee18btech11012_damp}
+\end{table}
+
+\item By choosing an appropriate input, illustrate the effect of damping using a Python code to sketch the response.  
+\end{enumerate}
