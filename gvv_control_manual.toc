@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Mason's Gain Formula}{1}{section.1}
+\contentsline {section}{\numberline {2}Bode Plot}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Introduction}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Example}{4}{subsection.2.2}
+\contentsline {section}{\numberline {3}Second order System}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Damping}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Example}{5}{subsection.3.2}
+\contentsline {section}{\numberline {4}Routh Hurwitz Criterion}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Routh Array}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Marginal Stability}{7}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Stability}{9}{subsection.4.3}
+\contentsline {section}{\numberline {5}State-Space Model}{9}{section.5}
+\contentsline {subsection}{\numberline {5.1}Controllability and Observabiity}{9}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Second Order System}{11}{subsection.5.2}
+\contentsline {section}{\numberline {6}Nyquist Plot}{11}{section.6}
+\contentsline {section}{\numberline {7}Compensators}{12}{section.7}
+\contentsline {section}{\numberline {8}Phase Margin}{13}{section.8}
+\contentsline {section}{\numberline {9}Gain Margin}{14}{section.9}
